@@ -1,0 +1,59 @@
+---
+title: "Leaflet"
+author: "Kristy Wedel"
+date: "April 9, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(leaflet)
+```
+
+
+```{r leaflet}
+mickeyIcon <- makeIcon(
+  iconUrl = "http://icons.iconarchive.com/icons/pino/disney/32/Mickey-Mouse-1-icon.png",
+  iconWidth = 30, iconHeight = 30,
+  iconAnchorX = 22, iconAnchorY = 94
+)
+
+df <- data.frame(lat = c(28.375398,
+				         28.375346,
+				         28.373938,
+				         28.359803,
+				         28.357605,
+				         28.355937,
+				         28.361189,
+						 28.418482,
+						 28.419392,
+						 28.419251,
+						 28.420280),
+				
+				lng = c(-81.549445,
+				        -81.551506,
+				        -81.546960,
+				        -81.591327,
+				        -81.590230,
+				        -81.558890,
+				        -81.558375,
+						-81.579629,
+						-81.581196,
+						-81.585072,
+						-81.583085
+						),
+				popup=c("Spaceship Earth",
+				        "Turtle Talk with Crush", 
+				        "Mission Space", 
+				        "Disney's Animal Kingdom", 
+				        "It's Tough to be a Bug", 
+				        "Star Tours", 
+				        "Fantasmic!", 
+				        "Monster's Inc", 
+				        "Cinderella's Castle",
+				        "Splash Mountain", 
+				        "The Haunted Mansion"))
+m <- leaflet(df) %>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>%
+  addMarkers(~lng, ~lat, popup = ~popup, icon = mickeyIcon, clusterOptions = markerClusterOptions())
+m  # Print the map
+```
