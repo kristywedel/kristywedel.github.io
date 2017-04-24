@@ -1,0 +1,12 @@
+base
+RevoUtilsMath
+shiny
+ggplot2
+e1071
+dplyr
+slidify
+gmodels
+rpart
+rattle
+rpart.plot
+RColorBrewer
